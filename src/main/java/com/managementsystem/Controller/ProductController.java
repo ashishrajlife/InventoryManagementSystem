@@ -33,10 +33,17 @@ public class ProductController {
         return service.getProductById(id);
     }
 
-    @PutMapping("/update")
-    public Product updateProduct(@RequestBody Product product) {
-        return service.updateProduct(product);
-    }
+    // @PutMapping("/update")
+    // public Product updateProduct(@RequestBody Product product) {
+    //     return service.updateProduct(product);
+    // }
+
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@PathVariable int id, @RequestBody Product product) {
+    product.setId(id); // Ensure the ID from the path is set in the product
+    return service.updateProduct(product);
+}
+
 
     @DeleteMapping("/delete/{id}")
     public String deleteProduct(@PathVariable int id) {
